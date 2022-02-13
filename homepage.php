@@ -7,6 +7,7 @@
     <title>Homepage</title>
 </head>
 <body>
+    <h1> Sample Homepage </h1>
     <?php
     ?>
 </body>
