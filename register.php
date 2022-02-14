@@ -25,22 +25,29 @@
     CREATE TABLE user_stories (
     id INT NOT NULL,
     username VARCHAR(50) NOT NULL,
+    story_id INT NOT NULL AUTO_INCREMENT,
     story_title VARCHAR(1023) NOT NULL,
     story_content LONGTEXT NOT NULL,
     story_link TEXT NOT NULL,
     story_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     story_upvote INT NOT NULL,
     story_downvote INT NOT NULL,
+    primary key (story_id),
     foreign key (id, username) references users (id, username)
     )engine = InnoDB default character set = utf8 collate = utf8_general_ci;
+
 
     CREATE TABLE user_comments (
     id INT NOT NULL,
     username VARCHAR(50) NOT NULL,
+    comment_id INT NOT NULL AUTO_INCREMENT,
+    comment_story INT NOT NULL,
+    comment_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     comment_content LONGTEXT NOT NULL,
     comment_upvote INT NOT NULL,
     comment_downvote INT NOT NULL,
-    foreign key (id, username) references users (id, username)
+    primary key (comment_id),
+    foreign key (id, username, comment_story) references user_stories (id, username, story_id)
     )engine = InnoDB default character set = utf8 collate = utf8_general_ci;
 
     */
