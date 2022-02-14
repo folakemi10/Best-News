@@ -14,10 +14,11 @@
     /*Following code is referenced from https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php*/
     /* created table:
     CREATE TABLE users (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL UNIQUE,
+    id INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP);
+    primary key (id, username)
+    )engine = InnoDB default character set = utf8 collate = utf8_general_ci;
     */
 
     //start session and connect to database
