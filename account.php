@@ -33,11 +33,19 @@
         printf(htmlentities($username));
         printf(htmlentities($story_time) . "<br>");
         printf(htmlentities($story_content) . "<br>");
-        printf(htmlentities($story_link) . "</div>");
+        printf(htmlentities($story_link) . "<br>");
         printf(
-            "<form action=\"deletestory.php\" method = \"POST\">
-                <input type=\"submit\" value=\"Back to Home\" />
-            </form>"
+            "
+            <form action=\"editstory.php\" method = \"POST\">
+                <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
+                <input type=submit name=\"edit\" id=\"edit\" value=\"Edit\"/>
+            </form>
+
+            <form action=\"deletestory.php\" method = \"POST\">
+                <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
+                <input type=submit name=\"delete\" id=\"delete\" value=\"Delete\"/>
+            </form>
+            </div>"
         );
     }
 
