@@ -16,9 +16,9 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_SESSION['user_id'];
-        $title = $mysqli->real_escape_string($_POST["story_title"]);
-        $content = $mysqli->real_escape_string($_POST["story_content"]);
-        $link = $mysqli->real_escape_string($_POST["story_link"]);
+        $title = $_POST["story_title"];
+        $content = $_POST["story_content"];
+        $link = $_POST["story_link"];
         $up = 0;
         $down = 0;
 
@@ -26,7 +26,7 @@
             die("Request forgery detected");
         }
 
-        if (empty($userame)) {
+        if (empty($_SESSION['user_id'])) {
             header('Location: homepage.php');
             exit;
         }
@@ -41,8 +41,7 @@
         $stmt->execute();
         $stmt->close();
 
-        echo "Story has been created.";
-        //header("Refresh:5; url=homepage.php");
+        header("Location: homepage.php");
     }
     ?>
 
@@ -52,10 +51,11 @@
         <label> Story Body: <input type="text" id="story_content" name="story_content"> </label>
         <label> Story Link: <input type="text" id="story_link" name="story_link"> </label>
 
-        <input type="submit" value="Create Story" />
+        <input type="submit" value="Publish My Story" />
         <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-
+        <input formaction = "homepage.php" type="submit" value="Back to Home" />
     </form>
+        
 
 
 

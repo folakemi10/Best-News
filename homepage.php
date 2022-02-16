@@ -31,29 +31,13 @@
     while ($stmt->fetch()) {
         printf("<div class=homepage_story> " . htmlentities($story_title) . "<br>");
         printf(htmlentities($username));
-        printf(htmlentities($date) . "<br>");
+        printf(htmlentities($story_time) . "<br>");
         printf(htmlentities($story_content) . "<br>");
         printf(htmlentities($story_link) . "</div>");
     }
 
     $stmt->close();
-
-
-
-
-
-
-
-    //allow user to type in any title, body text, or link ***Should we take user to a seperate page for this?***
-    //submit/post story
-
-    //user can go to their account page to see all their stories and edit it
-
-    //query from data base all stories 
     ?>
-
-
-
 
 
     <!-- Buttons on homepage if logged in -->
