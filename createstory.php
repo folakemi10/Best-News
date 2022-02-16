@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Story</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -18,31 +19,29 @@
         $title = $mysqli->real_escape_string($_POST["story_title"]);
         $content = $mysqli->real_escape_string($_POST["story_content"]);
         $link = $mysqli->real_escape_string($_POST["story_link"]);
+        $up = 0;
+        $down = 0;
 
         if(!hash_equals($_SESSION['token'], $_POST['token'])){
             die("Request forgery detected");
         }
 
-        if ($username == null) {
+        if (empty($userame)) {
             header('Location: homepage.php');
             exit;
         }
-        echo $username;
-        echo $title;
-        echo $content;
-        echo $link;
-    
-        $stmt = $mysqli->prepare("INSERT INTO user_stories (username, story_title, story_content, story_link) VALUES (?, ?, ?, ?)");
+        
+        $stmt = $mysqli->prepare("INSERT INTO user_stories (username, story_title, story_content, story_link, story_upvote, story_downvote) values (?, ?, ?, ?, ?, ?)");
         if (!$stmt) {
             printf("Query Prep Failed: %s\n", $mysqli->error);
             exit;
         }
 
-        $stmt->bind_param('ssss', $username, $title, $content, $link);
+        $stmt->bind_param('ssssii', $username, $title, $content, $link, $up, $down);
         $stmt->execute();
         $stmt->close();
 
-        echo "Your story has been created. You will be returned to homepage.";
+        echo "Story has been created.";
         //header("Refresh:5; url=homepage.php");
     }
     ?>

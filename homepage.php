@@ -12,30 +12,32 @@
 <body>
     <h1> Best News </h1>
     <?php
+    session_start();
     require 'connectdatabase.php';
-    //display all stories in user_stories database in reverse chronological order 
-
+    $$username = $_SESSION['user_id'];
+    //display all stories in user_stories database in reverse chronological order
     //Use prepare statement to get story attributes
-    $get_story_data = $mysqli->prepare('SELECT id, username, story_id, story_title, story_content, story_link, story_time, story_upvote, story_downvote FROM user_stories');
-    $get_story_data->execute();
+    $stmt = $mysqli->prepare('SELECT username, story_id, story_title, story_content, story_link, story_time, story_upvote, story_downvote FROM user_stories');
+    if (!$stmt) {
+        printf("Query Prep Failed: %s\n", $mysqli->error);
+        exit;
+    }
+    $stmt->execute();
 
     //Bind the parameter
-    $get_story_data->bind_result($user_id, $username, $story_title, $story_content, $story_link, $story_time, $story_upvote, $story_downvote);
-
+    $stmt->bind_result($username, $story_id, $story_title, $story_content, $story_link, $story_time, $story_upvote, $story_downvote);
     //loop
 
-    /*
-    while ($story_data->fetch()) {
-        printf(
-            htmlspecialchars($username),
-            htmlspecialchars($story_title),
-            htmlspecialchars($story_content),
-            htmlspecialchars($story_time),
-            htmlspecialchars($story_link),
-        );
+    while ($stmt->fetch()) {
+        printf("<div class=homepage_story> " . htmlentities($story_title) . "<br>");
+        printf(htmlentities($username));
+        printf(htmlentities($date) . "<br>");
+        printf(htmlentities($story_content) . "<br>");
+        printf(htmlentities($story_link) . "</div>");
     }
+
     $stmt->close();
-    */
+
 
 
 
@@ -50,26 +52,49 @@
     //query from data base all stories 
     ?>
 
+
+
+
+
+    <!-- Buttons on homepage if logged in -->
     <!-- go to account page button -->
-    <div>
-        <form action="account.php">
-            <input type="submit" value="My Account" />
-        </form>
-    </div>
+    <?php
 
-    <!-- logout button -->
-    <div>
-        <form action="login.php">
-            <input type="submit" value="Logout" />
+    if (empty($_SESSION['user_id'])) {
+        echo  "username should be blank here: " . $_SESSION['user_id'];
+        //user not logged in
+        echo "<div>
+    <form action=\"login.php\">
+        <input type=\"submit\" value=\"Login\" />
+    </form>
+    </div>";
+    
+    } else {
+        //user is logged in
+        echo  $_SESSION['user_id'];
+        //takes user to their account page
+        echo "<div>
+        <form action=\"account.php\">
+            <input type=\"submit\" value=\"My Account\" />
         </form>
-    </div>
+    </div>";
 
-    <!-- created story button -->
-    <div>
-        <form action="createstory.php">
-            <input type="submit" value="Create Story" />
+        //logout button
+        echo "<div>
+        <form action=\"logout.php\">
+            <input type=\"submit\" value=\"Logout\" />
         </form>
-    </div>
+    </div>";
+
+        //create a story
+        echo "<div>
+        <form action=\"createstory.php\">
+            <input type=\"submit\" value=\"Create Story\" />
+        </form>
+    </div>";
+    }
+    ?>
+
 </body>
 
 </html>
