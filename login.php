@@ -38,7 +38,7 @@
     $stmt->execute();
     
     // Bind the results
-    $stmt->bind_result($cnt, $username, $pwd_hash);
+    $stmt->bind_result($cnt, $user_id, $pwd_hash);
     $stmt->fetch();
     
     $pwd_guess = $_POST['password'];
@@ -47,10 +47,12 @@
     if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
         // Login succeeded!
         $_SESSION['user_id'] = $user_id;
+        $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
         header("Location: homepage.php");
     } else{
         // Login failed; redirect back to the login screen
         $login_err = "This username or password is invalid.";
+        session_destroy();
     }
     ?>
 
@@ -67,8 +69,7 @@
             </div>
 
             <input type="submit" value="Log In" /> <br>
-
-
+        
             <?php
             if (!empty($username_err)) {
                 echo $username_err;

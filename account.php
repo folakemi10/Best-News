@@ -7,7 +7,12 @@
     <title>Account</title>
 </head>
 <body>
+    <h1>My Account </h1>
+    <h2>Posts</h2>
+
+    <h2>Comments</h2>
     <?php 
+
     ?>
 </body>
 </html>
