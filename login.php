@@ -80,6 +80,8 @@
             }
             ?>
             <p> Don't have a username? <a href="register.php">Sign up here</a></p>
+
+            <p> <a href="homepage.php">Continue as a guest</a></p>
         </div>
 
 

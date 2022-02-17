@@ -19,8 +19,6 @@
 
 
     if(!hash_equals($_SESSION['token'], $_POST['token'])){
-        echo "Session token: " . $_SESSION['token'];
-        echo "Post token: " . $_POST['token'];
         die("Request forgery detected for comments");
     }
 

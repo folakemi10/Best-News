@@ -37,15 +37,17 @@
             printf(htmlentities($story_content) . "<br>");
             printf(htmlentities($story_link) . "</div>");
 
-            //print area for leaving comments
-            printf(
-                "<form action=\"comments.php\" method = \"POST\">
+            if (!empty($_SESSION['user_id'])) {
+                //print area for leaving comments
+                printf(
+                    "<form action=\"comments.php\" method = \"POST\">
                     <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
                     <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
                     <label> Leave a Comment: <input type=text name=\"comment\" id=\"comment\" </label>
                     <input type=submit name=\"post_comment\" id=\"post_comment\" value=\"Post\"/>
                 </form>"
-            );
+                );
+            }
         }
 
         printf("<div class=homepage_comments> " . htmlentities($comment_username) . "<br>");
@@ -53,7 +55,6 @@
         printf(htmlentities($comment_content) . "</div>");
 
         $past_story_id = $story_id;
-        
     }
     $stmt->close();
     ?>
