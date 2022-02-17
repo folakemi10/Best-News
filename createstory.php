@@ -23,7 +23,7 @@
         $down = 0;
 
         if(!hash_equals($_SESSION['token'], $_POST['token'])){
-            die("Request forgery detected");
+            die("Request forgery detected for create story");
         }
 
         if (empty($_SESSION['user_id'])) {

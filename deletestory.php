@@ -25,6 +25,7 @@
         $stmt->close();
         header('Location: account.php');
         //delete all comments associated with story
+        
 
 
     ?>
