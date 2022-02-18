@@ -65,7 +65,7 @@
     //display all stories in user_stories database in reverse chronological order
     //Use prepare statement to get story attributes
     $stmt = $mysqli->prepare('SELECT user_stories.username, story_id, story_title, story_content, story_link, story_time, story_upvote, story_downvote, 
-    user_comments.username, user_comments.comment_time, user_comments.comment_content FROM user_stories LEFT JOIN user_comments ON (user_stories.story_id = user_comments.comment_story)');
+    user_comments.username, user_comments.comment_time, user_comments.comment_content FROM user_stories LEFT JOIN user_comments ON (user_stories.story_id = user_comments.comment_story) ORDER BY story_id DESC');
     if (!$stmt) {
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
