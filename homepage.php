@@ -24,7 +24,7 @@
         if (empty($_SESSION['user_id'])) {
             //user not logged in
 
-            echo "<div classname=loginButton>
+            echo "<div classname=headerButton>
         <form action=\"login.php\">
         <div loginButton>
         <input type=\"submit\" value=\"Login\" />
@@ -34,7 +34,7 @@
         } else {
             //user is logged in
             //takes user to their account page
-            echo "<div loginButton>
+            echo "<div classname=headerButton>
         <form action=\"account.php\">
         <div loginButton>
             <input type=\"submit\" value=\"My Account\" />
@@ -43,14 +43,14 @@
     </div>";
 
             //logout button
-            echo "<div loginButton>
+            echo "<div classname=headerButton>
         <form action=\"logout.php\">
             <input type=\"submit\" value=\"Logout\" />
         </form>
     </div>";
 
             //create a story
-            echo "<div loginButton>
+            echo "<div classname=headerButton>
         <form action=\"createstory.php\">
             <input type=\"submit\" value=\"Create Story\" />
         </form>
@@ -86,14 +86,12 @@
             if (!empty($_SESSION['user_id'])) {
                 //print area for leaving comments
                 printf(
-                    "<div class=comment_form> 
-                    <form action=\"comments.php\" method = \"POST\">
+                    "<form action=\"comments.php\" method = \"POST\">
                     <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
                     <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
                     <label> Leave a Comment: <input type=text name=\"comment\" id=\"comment\" </label>
                     <input type=submit name=\"post_comment\" id=\"post_comment\" value=\"Post\"/>
-                </form>
-                </div>"
+                </form>"
                 );
             }
         }
