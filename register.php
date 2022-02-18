@@ -10,9 +10,11 @@
 </head>
 
 <body>
-    <?php
-    /*Following code is referenced from https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php*/
-    /* 
+    <div class=header>
+        <h1 class=logo> Best News </h1>
+        <?php
+        /*Following code is referenced from https://www.tutorialrepublic.com/php-tutorial/php-mysql-login-system.php*/
+        /* 
     
     CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
@@ -48,69 +50,69 @@
 
     */
 
-    //start session and connect to database
-    session_start();
-    require 'connectdatabase.php';
-    $username_err = $password_err = $confirm_password_err = "";
+        //start session and connect to database
+        session_start();
+        require 'connectdatabase.php';
+        $username_err = $password_err = $confirm_password_err = "";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        //get new username
-        if (empty(trim($_POST["new_username"]))) {
-            $username_err = "Please input a valid username.";
-        } else if (!preg_match('/^[\w_\.\-]+$/', $_POST["new_username"])) {
-            $username_err = "Invalid username. Please only use letters, numbers, and underscores.";
-        } else {
-            $new_username = trim($_POST["new_username"]);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            //get new username
+            if (empty(trim($_POST["new_username"]))) {
+                $username_err = "Please input a valid username.";
+            } else if (!preg_match('/^[\w_\.\-]+$/', $_POST["new_username"])) {
+                $username_err = "Invalid username. Please only use letters, numbers, and underscores.";
+            } else {
+                $new_username = trim($_POST["new_username"]);
 
-            //check for duplicate username
-            //referenced from https://stackoverflow.com/questions/5378427/php-mysql-check-for-duplicate-entry
-            $duplicate_select = $mysqli->query("SELECT * FROM users WHERE username = '$new_username'");
-            $num_rows = mysqli_num_rows($duplicate_select);
-            if ($num_rows){
-                $username_err = "This username is already taken.";
-            }
-        }
-
-        //get new password
-        if (empty(trim($_POST["new_password"]))) {
-            $password_err = "Please input a password.";
-        } else {
-            $new_password = trim($_POST["new_password"]);
-        }
-
-        //ask to confirm new password
-        if (empty(trim($_POST["confirm_password"]))) {
-            $confirm_password_err = "Please confirm your password.";
-        } else {
-            $confirm_password = trim($_POST["confirm_password"]);
-            if ($new_password != $confirm_password) {
-                $confirm_password_err = "Password did not match.";
-            }
-        }
-
-        //confirm there are no signup errors before entering into database
-        if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
-            //hash password
-            $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
-
-            $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-            if (!$stmt) {
-                printf("Query Prep Failed: %s\n", $mysqli->error);
-                exit;
+                //check for duplicate username
+                //referenced from https://stackoverflow.com/questions/5378427/php-mysql-check-for-duplicate-entry
+                $duplicate_select = $mysqli->query("SELECT * FROM users WHERE username = '$new_username'");
+                $num_rows = mysqli_num_rows($duplicate_select);
+                if ($num_rows) {
+                    $username_err = "This username is already taken.";
+                }
             }
 
-            $stmt->bind_param('ss', $new_username, $password_hash);
+            //get new password
+            if (empty(trim($_POST["new_password"]))) {
+                $password_err = "Please input a password.";
+            } else {
+                $new_password = trim($_POST["new_password"]);
+            }
 
-            $stmt->execute();
+            //ask to confirm new password
+            if (empty(trim($_POST["confirm_password"]))) {
+                $confirm_password_err = "Please confirm your password.";
+            } else {
+                $confirm_password = trim($_POST["confirm_password"]);
+                if ($new_password != $confirm_password) {
+                    $confirm_password_err = "Password did not match.";
+                }
+            }
 
-            $stmt->close();
+            //confirm there are no signup errors before entering into database
+            if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
+                //hash password
+                $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-            echo "You have been registered. You will be returned to login.";
-            header("Refresh:2; url=login.php");
+                $stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+                if (!$stmt) {
+                    printf("Query Prep Failed: %s\n", $mysqli->error);
+                    exit;
+                }
+
+                $stmt->bind_param('ss', $new_username, $password_hash);
+
+                $stmt->execute();
+
+                $stmt->close();
+
+                echo "You have been registered. You will be returned to login.";
+                header("Refresh:2; url=login.php");
+            }
         }
-    }
-    ?>
-
+        ?>
+    </div>
 
     <div class="register">
         <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">

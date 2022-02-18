@@ -22,7 +22,7 @@
         $up = 0;
         $down = 0;
 
-        if(!hash_equals($_SESSION['token'], $_POST['token'])){
+        if (!hash_equals($_SESSION['token'], $_POST['token'])) {
             die("Request forgery detected for create story");
         }
 
@@ -30,7 +30,7 @@
             header('Location: homepage.php');
             exit;
         }
-        
+
         $stmt = $mysqli->prepare("INSERT INTO user_stories (username, story_title, story_content, story_link, story_upvote, story_downvote) values (?, ?, ?, ?, ?, ?)");
         if (!$stmt) {
             printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -47,15 +47,16 @@
 
     <h1> Create Your Story </h1>
     <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
-        <label> Story Title: <input type="text" id="story_title" name="story_title"> </label>
-        <label> Story Body: <input type="text" id="story_content" name="story_content"> </label>
-        <label> Story Link: <input type="text" id="story_link" name="story_link"> </label>
 
-        <input type="submit" value="Publish My Story" />
-        <input type="hidden" name="token" value="<?php echo $_SESSION['token'];?>" />
-        <input formaction = "homepage.php" type="submit" value="Back to Home" />
+        <label> Story Title: <input class=create_story type="text" id="story_title" name="story_title"> </label>
+        <label> Story Body: <textarea class=create_story name="story_content" id="story_content" rows=5 cols=50> </textarea> </label>
+        <label> Story Link: <input class=create_story type="text" id="story_link" name="story_link"> </label>
+        <input class=create_story type="submit" value="Publish My Story" />
+        <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>" />
+        <input formaction="homepage.php" type="submit" value="Back to Home" />
+
     </form>
-        
+
 
 
 
