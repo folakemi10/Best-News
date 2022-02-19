@@ -6,4 +6,4 @@ Folakemi Shofu 488093 @folakemi10
 We decided to implement:
 * Confirm password function when registering/signing up
 * Account Page where user can see all the stories and comments they wrote
-* Upvote/Downvote Stories
+* Upvote stories to bring them to the top of the homepage
