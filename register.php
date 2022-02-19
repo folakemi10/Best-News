@@ -122,15 +122,17 @@
             </div>
 
             <div>
-                <label> New Password: <input type="text" id="password" name="new_password"></label>
+                <label> New Password: <input type="password" id="password" name="new_password"></label>
             </div>
 
             <div>
-                <label> Confirm Password: <input type="text" id="confirm_password" name="confirm_password"></label>
+                <label> Confirm Password: <input type="password" id="confirm_password" name="confirm_password"></label>
             </div>
 
 
             <input type="submit" value="Sign Up" /> <br>
+
+            <p> Already have an account? <a href="homepage.php">Login</a></p>
 
             <?php
             if (!empty($username_err)) {

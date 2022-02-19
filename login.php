@@ -68,7 +68,7 @@
             </div>
 
             <div>
-                <label> Password: <input type="text" id="password" name="password"></label>
+                <label> Password: <input type="password" id="password" name="password"></label>
             </div>
 
             <input type="submit" value="Log In" /> <br>
