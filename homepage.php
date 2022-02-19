@@ -24,7 +24,7 @@
         if (empty($_SESSION['user_id'])) {
             //user not logged in
 
-            echo "<div classname=headerButton>
+            echo "<div classname=loginButton>
         <form action=\"login.php\">
         <div loginButton>
         <input type=\"submit\" value=\"Login\" />
@@ -34,7 +34,7 @@
         } else {
             //user is logged in
             //takes user to their account page
-            echo "<div classname=headerButton>
+            echo "<div loginButton>
         <form action=\"account.php\">
         <div loginButton>
             <input type=\"submit\" value=\"My Account\" />
@@ -43,14 +43,14 @@
     </div>";
 
             //logout button
-            echo "<div classname=headerButton>
+            echo "<div loginButton>
         <form action=\"logout.php\">
             <input type=\"submit\" value=\"Logout\" />
         </form>
     </div>";
 
             //create a story
-            echo "<div classname=headerButton>
+            echo "<div loginButton>
         <form action=\"createstory.php\">
             <input type=\"submit\" value=\"Create Story\" />
         </form>
@@ -65,7 +65,8 @@
     //display all stories in user_stories database in reverse chronological order
     //Use prepare statement to get story attributes
     $stmt = $mysqli->prepare('SELECT user_stories.username, story_id, story_title, story_content, story_link, story_time, story_upvote, story_downvote, 
-    user_comments.username, user_comments.comment_time, user_comments.comment_content FROM user_stories LEFT JOIN user_comments ON (user_stories.story_id = user_comments.comment_story) ORDER BY story_id DESC');
+    user_comments.username, user_comments.comment_time, user_comments.comment_content FROM user_stories LEFT JOIN user_comments ON (user_stories.story_id = user_comments.comment_story) ORDER BY story_upvote DESC, story_id');
+
     if (!$stmt) {
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
@@ -77,21 +78,36 @@
 
     while ($stmt->fetch()) {
         if ($story_id != $past_story_id) {
+            //printing story contents
             printf("<div class=homepage_story> " . htmlentities($story_title) . "<br>");
             printf("<h1 class=comment_headings>" . "Written by " . htmlentities($story_username));
             printf(" at " . htmlentities($story_time) . "<br>" . "</h1>");
             printf(htmlentities($story_content) . "<br>");
-            printf(htmlentities($story_link) . "</div>");
+            printf(htmlentities($story_link));
+            //printing upvote button
+            printf("<div class=upvote> 
+                <form action=\"upvote.php\" method = \"POST\">
+                    <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
+                    <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
+                    <p> Points: " . $story_upvote . " </p>
+                    <input type=submit name=\"upvote\" id=\"upvote\" value=\"Award a Point\"/>
+                </form>
+                </div>");
+            printf("</div>");
+
+
 
             if (!empty($_SESSION['user_id'])) {
                 //print area for leaving comments
                 printf(
-                    "<form action=\"comments.php\" method = \"POST\">
+                    "<div class=comment_form> 
+                    <form action=\"comments.php\" method = \"POST\">
                     <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
                     <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
                     <label> Leave a Comment: <input type=text name=\"comment\" id=\"comment\" </label>
                     <input type=submit name=\"post_comment\" id=\"post_comment\" value=\"Post\"/>
-                </form>"
+                </form>
+                </div>"
                 );
             }
         }
