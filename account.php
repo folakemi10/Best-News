@@ -42,6 +42,7 @@
         printf(htmlentities($story_time) . "<br>");
         printf(htmlentities($story_content) . "<br>");
         printf(htmlentities($story_link) . "<br>");
+        printf("<p> Points: " . htmlentities($story_upvote) . " </p>");
         printf(
             "<form action=\"editstory.php\" method = \"POST\">
                 <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">

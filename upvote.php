@@ -13,8 +13,8 @@
     session_start();
     require("connectdatabase.php");
 
-    
-    if(!hash_equals($_SESSION['token'], $_POST['token'])){
+
+    if (!hash_equals($_SESSION['token'], $_POST['token'])) {
         die("Request forgery detected for edit story");
     }
 
@@ -23,22 +23,24 @@
         exit;
     }
 
-    $story_id = $_POST['story_id'];
+    $post_story_id = $_POST['story_id'];
+    $already_voted = $_POST['already_voted'];
 
     //get curent number of upvotes
-    $stmt = $mysqli->prepare("SELECT story_upvote FROM user_stories WHERE story_id=?");
+    $stmt = $mysqli->prepare("SELECT story_upvote, story_id FROM user_stories WHERE story_id=?");
     if (!$stmt) {
         printf("Query Prep Failed: %s\n", $mysqli->error);
         exit;
     }
-    $stmt->bind_param('i', $story_id);
+    $stmt->bind_param('i', $post_story_id);
     $stmt->execute();
-    $stmt->bind_result($upvotes);
+    $stmt->bind_result($upvotes, $story_id);
     $stmt->fetch();
     $stmt->close();
 
     //increase number of upvotes by one
     $upvotes += 1;
+
 
     //update new number of upvotes in database
     $stmt2 = $mysqli->prepare("UPDATE user_stories SET story_upvote = ? WHERE story_id = ?");

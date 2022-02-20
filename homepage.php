@@ -87,17 +87,16 @@
 
             //hide upvote functionality if user is not logged in
             if (!empty($_SESSION['user_id'])) {
-                //printing upvote button
                 printf("<div class=upvote> 
                 <form action=\"upvote.php\" method = \"POST\">
-                    <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
+                    <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . htmlentities($story_id) . "\"/>
                     <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-                    <p> Points: " . $story_upvote . " </p>
+                    <p> Points: " . htmlentities($story_upvote) . " </p>
                     <input type=submit name=\"upvote\" id=\"upvote\" value=\"Award a Point\"/>
                 </form>
                 </div>");
             }
-            
+
             printf("</div>");
 
 
