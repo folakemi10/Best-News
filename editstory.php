@@ -42,9 +42,9 @@
     echo "<h1> Edit Story </h1>";
     echo "<form action=\"updatestory.php\" method = \"POST\">
         <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-            <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
-            <textarea name=\"edit_story\" id = \"edit_story\" rows=\"5\" cols=\"50\"> " . $story_content . "</textarea>
-            <input type=submit value = \"Update Story\" />
+            <input class=create_story type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
+            <textarea class=create_story name=\"edit_story\" id = \"edit_story\" rows=\"5\" cols=\"50\"> " . $story_content . "</textarea>
+            <input class=create_story type=submit value = \"Update Story\" />
         </form>";
     ?>
 
