@@ -18,13 +18,18 @@
     require 'connectdatabase.php';
     $username = $_SESSION['user_id'];
 
-    echo "<form action=\"deleteuser.php\" method = \"POST\">
+    if(!isset($_SESSION["token"])){
+        $_SESSION["token"] = "deafult";
+    }
+
+    echo
+    "<form action=\"deleteuser.php\" method = \"POST\">
         <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
         <div class=deleteAccount>
-        <input class=deleteAccount type=submit name=\"deleteuser\" id=\"deleteuser\" value=\"Delete My Account\"/>
+            <input class=deleteAccount type=submit name=\"deleteuser\" id=\"deleteuser\" value=\"Delete My Account\"/>
         </div>
     </form>";
-
+    
     echo "<h1>My Account </h1>";
     echo "<h3> Welcome, " . $_SESSION['user_id'] . "</h3>";
     echo "<h2>Posts</h2>";
@@ -52,14 +57,14 @@
         printf(
             "<form action=\"editstory.php\" method = \"POST\">
                 <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-                <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
-                <input type=submit name=\"edit\" id=\"edit\" value=\"Edit\"/>
+                <input type=hidden name=\"story_id\" value=\"" . $story_id . "\"/>
+                <input type=submit name=\"edit\" value=\"Edit\"/>
             </form>
 
             <form action=\"deletestory.php\" method = \"POST\">
                 <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-                <input type=hidden name=\"story_id\" id=\"story_id\" value=\"" . $story_id . "\"/>
-                <input type=submit name=\"delete\" id=\"delete\" value=\"Delete\"/>
+                <input type=hidden name=\"story_id\"  value=\"" . $story_id . "\"/>
+                <input type=submit name=\"delete\" value=\"Delete\"/>
             </form>
             </div>"
         );
@@ -88,14 +93,14 @@
         printf(
             "<form action=\"editcomment.php\" method = \"POST\">
             <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-            <input type=hidden name=\"comment_id\" id=\"comment_id\" value=\"" . $comment_id . "\"/>
-            <input type=submit name=\"edit\" id=\"edit\" value=\"Edit\"/>
+            <input type=hidden name=\"comment_id\" value=\"" . $comment_id . "\"/>
+            <input type=submit name=\"edit\" value=\"Edit\"/>
         </form>
 
         <form action=\"deletecomment.php\" method = \"POST\">
             <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-            <input type=hidden name=\"comment_id\" id=\"comment_id\" value=\"" . $comment_id . "\"/>
-            <input type=submit name=\"delete\" id=\"delete\" value=\"Delete\"/>
+            <input type=hidden name=\"comment_id\" value=\"" . $comment_id . "\"/>
+            <input type=submit name=\"delete\"  value=\"Delete\"/>
         </form>
         </div>"
         );
