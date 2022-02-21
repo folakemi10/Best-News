@@ -18,6 +18,10 @@
     require 'connectdatabase.php';
     $username = $_SESSION['user_id'];
 
+    echo "<form action=\"deleteuser.php\" method = \"POST\">
+        <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
+        <input type=submit name=\"deleteuser\" id=\"deleteuser\" value=\"Delete My Account\"/>
+    </form>";
 
     echo "<h1>My Account </h1>";
     echo "<h3> Welcome, " . $_SESSION['user_id'] . "</h3>";
@@ -80,7 +84,7 @@
         printf(htmlentities($comment_time) . "<br>");
         printf(htmlentities($comment_content) . "<br>");
         printf(
-        "<form action=\"editcomment.php\" method = \"POST\">
+            "<form action=\"editcomment.php\" method = \"POST\">
             <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
             <input type=hidden name=\"comment_id\" id=\"comment_id\" value=\"" . $comment_id . "\"/>
             <input type=submit name=\"edit\" id=\"edit\" value=\"Edit\"/>
