@@ -109,3 +109,13 @@ div.logout {
   font-size: 10px;
   color: #757272;
 }
+
+input[type="submit"] {
+  padding: 5px 10px;
+  background: #11a76d;
+  font-size: 14px;
+  color: #ffffff;
+  border: 2px , #000000;
+  border-radius: 3px;
+}
+
