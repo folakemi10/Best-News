@@ -12,7 +12,15 @@ body {
 }
 /* trying to align all buttons to the right in homepage  */
 .headerButton {
+<<<<<<< HEAD
+  float: right;
+  display: inline-start;
+  margin-block-end: 0.83em;
+  margin: 8px;
+  color: rgb(255, 0, 0);
+=======
   justify-content: right;
+>>>>>>> b5827e47f26800b62063c88f07727af8d8c08588
 }
 
 .loginUser {
