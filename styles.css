@@ -12,13 +12,20 @@ body {
 }
 /* trying to align all buttons to the right in homepage  */
 .headerButton {
+<<<<<<< HEAD
   float: right;
   display: inline-start;
   margin-block-end: 0.83em;
   margin: 8px;
   color: rgb(255, 0, 0);
+=======
+  justify-content: right;
+>>>>>>> b5827e47f26800b62063c88f07727af8d8c08588
 }
 
+.loginUser {
+  padding-right: 5px;
+}
 .create_story {
   display: list-item;
   box-sizing: border-box;
@@ -46,7 +53,6 @@ div.login {
   top: 65%;
   left: 50%;
   transform: translate(-50%, -70%);
-
   padding: 30px;
   background-color: white;
 
@@ -114,7 +120,6 @@ input[type="submit"] {
   background: #11a76d;
   font-size: 14px;
   color: #ffffff;
-  border: 2px , #000000;
+  border: 2px, #000000;
   border-radius: 3px;
 }
-
