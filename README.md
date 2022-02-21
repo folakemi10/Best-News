@@ -4,7 +4,7 @@ Folakemi Shofu 488093 @folakemi10
 
 
 
-##EC2 Links
+## EC2 Links
 For Chelsea:\
 http://ec2-3-89-105-238.compute-1.amazonaws.com/~cyuan/module3/homepage.php\
 
