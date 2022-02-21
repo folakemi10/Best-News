@@ -26,20 +26,16 @@
 
             echo "<div class=headerButton>
         <form action=\"login.php\">
-        <div loginButton>
         <input type=\"submit\" value=\"Login\" />
     </form>
-            </div>
     </div>";
         } else {
             //user is logged in
             //takes user to their account page
             echo "<div class=headerButton>
         <form action=\"account.php\">
-        <div loginButton>
             <input type=\"submit\" value=\"My Account\" />
         </form>
-        </div>
     </div>";
 
             //logout button

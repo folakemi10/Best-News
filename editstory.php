@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Story</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -16,7 +17,7 @@
     $username = $_SESSION['user_id'];
     $story_id = $_POST['story_id'];
 
-    if(!hash_equals($_SESSION['token'], $_POST['token'])){
+    if (!hash_equals($_SESSION['token'], $_POST['token'])) {
         die("Request forgery detected for edit story");
     }
 
@@ -34,7 +35,7 @@
     $stmt->bind_param('i', $story_id);
     $stmt->execute();
 
-    $stmt->bind_result($story_title, $story_content, $story_link);  
+    $stmt->bind_result($story_title, $story_content, $story_link);
     $stmt->fetch();
     $stmt->close();
 
@@ -45,11 +46,11 @@
             <textarea name=\"edit_story\" id = \"edit_story\" rows=\"5\" cols=\"50\"> " . $story_content . "</textarea>
             <input type=submit value = \"Update Story\" />
         </form>";
-?>
+    ?>
 
-<form action="account.php">
-    <input type="submit" value="Back to My Account" />
-</form>
+    <form action="account.php">
+        <input type="submit" value="Back to My Account" />
+    </form>
 
 
 </body>
