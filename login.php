@@ -64,7 +64,7 @@
         <div class="login">
             <p class="maintitle"> Login </p>
             <div class="username">
-                <label> Username: <input type="text" class="loginUser" id="username" name="username"></label>
+                <label> Username: <input class="loginUser" type="text" id="username" name="username"></label>
             </div>
 
             <div>
