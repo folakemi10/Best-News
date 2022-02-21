@@ -24,7 +24,7 @@
         if (empty($_SESSION['user_id'])) {
             //user not logged in
 
-            echo "<div classname=loginButton>
+            echo "<div class=headerButton>
         <form action=\"login.php\">
         <div loginButton>
         <input type=\"submit\" value=\"Login\" />
@@ -34,7 +34,7 @@
         } else {
             //user is logged in
             //takes user to their account page
-            echo "<div loginButton>
+            echo "<div class=headerButton>
         <form action=\"account.php\">
         <div loginButton>
             <input type=\"submit\" value=\"My Account\" />
@@ -43,14 +43,14 @@
     </div>";
 
             //logout button
-            echo "<div loginButton>
+            echo "<div class=headerButton>
         <form action=\"logout.php\">
             <input type=\"submit\" value=\"Logout\" />
         </form>
     </div>";
 
             //create a story
-            echo "<div loginButton>
+            echo "<div class=headerButton>
         <form action=\"createstory.php\">
             <input type=\"submit\" value=\"Create Story\" />
         </form>
@@ -116,9 +116,11 @@
             }
         }
 
-        printf("<div class=homepage_comments> " . "<h1 class=comment_headings> " . htmlentities($comment_username) . " at ");
-        printf(htmlentities($comment_time) . "<br>" . "</h1>");
-        printf(htmlentities($comment_content) . "</div>");
+        if (!empty($comment_content)) {
+            printf("<div class=homepage_comments> " . "<h1 class=comment_headings> " . htmlentities($comment_username) . " at ");
+            printf(htmlentities($comment_time) . "<br>" . "</h1>");
+            printf(htmlentities($comment_content) . "</div>");
+        }
 
         $past_story_id = $story_id;
     }
