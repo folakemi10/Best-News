@@ -12,19 +12,20 @@ body {
 }
 /* trying to align all buttons to the right in homepage  */
 .headerButton {
-<<<<<<< HEAD
   float: right;
   display: inline-start;
   margin-block-end: 0.83em;
   margin: 8px;
-  color: rgb(255, 0, 0);
-=======
-  justify-content: right;
->>>>>>> b5827e47f26800b62063c88f07727af8d8c08588
+}
+.deleteAccount {
+  float: right;
+  display: inline-start;
+  margin-block-end: 0.83em;
+  margin: 8px;
 }
 
 .loginUser {
-  padding-right: 20px;
+  padding-left: 20px;
 }
 .create_story {
   display: list-item;
@@ -47,13 +48,13 @@ div.login {
   text-align: center;
   margin: auto;
 
-  width: 50%;
+  width: 40%;
 
   position: absolute;
-  top: 65%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -70%);
-  padding: 30px;
+  transform: translate(-50%, -64%);
+  padding: 20px;
   background-color: white;
 
   font-size: 18px;
@@ -118,6 +119,14 @@ div.logout {
 input[type="submit"] {
   padding: 5px 10px;
   background: #11a76d;
+  font-size: 14px;
+  color: #ffffff;
+  border: 2px, #000000;
+  border-radius: 3px;
+}
+input[type="submit"].deleteAccount {
+  padding: 5px 10px;
+  background: red;
   font-size: 14px;
   color: #ffffff;
   border: 2px, #000000;

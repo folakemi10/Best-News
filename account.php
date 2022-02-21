@@ -20,7 +20,9 @@
 
     echo "<form action=\"deleteuser.php\" method = \"POST\">
         <input type=hidden name=\"token\" value=" . $_SESSION['token'] . ">
-        <input type=submit name=\"deleteuser\" id=\"deleteuser\" value=\"Delete My Account\"/>
+        <div class=deleteAccount>
+        <input class=deleteAccount type=submit name=\"deleteuser\" id=\"deleteuser\" value=\"Delete My Account\"/>
+        </div>
     </form>";
 
     echo "<h1>My Account </h1>";
