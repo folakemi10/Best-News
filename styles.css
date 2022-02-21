@@ -32,11 +32,7 @@ body {
   box-sizing: border-box;
   border-radius: 4px;
 }
-.edit_story {
-  display: list-item;
-  box-sizing: border-box;
-  border-radius: 4px;
-}
+
 .logo {
   font-size: 40px;
   font-weight: bold;
