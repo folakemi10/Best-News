@@ -9,6 +9,8 @@ For Chelsea:\
 http://ec2-3-89-105-238.compute-1.amazonaws.com/~cyuan/module3/homepage.php
 
 You may use the usernames: user1, user2, or user3. All of them have the corresponding password of just "password". Registering a new user is also available.
+for folakemu:\
+http://ec2-3-88-203-236.compute-1.amazonaws.com/~kemi/module3-group-488093-490370/homepage.php?
 
 ## Creative Portion
 We decided to implement:
