@@ -18,3 +18,7 @@ We decided to implement:
 * Account Page where user can see all the stories and comments they wrote
 * Upvote stories: stories will be ordered in the number of points they have been awarded (stories with the highest points are at the top)
 * Delete a user, which will remove all stories and comments associated with that username, and remove that user from the database
+
+Grade:
+
+Full Points
